@@ -1,0 +1,10 @@
+version: '3.3'
+# created by composerize using following command
+# `docker run -p 8080:80 -d --name platformservice kiyotakeshiwork/platformservice`
+# @see https://www.composerize.com/
+services:
+    platformservice:
+        ports:
+            - '8080:80'
+        container_name: platformservice
+        image: kiyotakeshiwork/platformservice
