@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PlatformService.Data;
+using PlatformService.SyncDataService.Http;
 
 namespace PlatformService
 {
@@ -33,12 +34,16 @@ namespace PlatformService
 
             services.AddScoped<IPlatformRepository, PlatformRepository>();
 
+			services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+
 			services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformService", Version = "v1" });
 			});
+
+			Console.WriteLine($"CommandService endpoint {Configuration["CommandService"]}");
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,7 +55,10 @@ namespace PlatformService
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PlatformService v1"));
 			}
 
-			app.UseHttpsRedirection();
+            if (!env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
 
 			app.UseRouting();
 
