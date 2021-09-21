@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platformservice-development
+  name: commandservice-development
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: platformservice
+      app: commandservice
   template:
     metadata:
       labels:
-        app: platformservice
+        app: commandservice
     spec:
       containers:
-      - name: platformservice
-        image: kiyotakeshiwork/platformservice:latest
+      - name: commandservice
+        image: kiyotakeshiwork/commandservice:latest
         resources:
           limits:
             memory: "128Mi"
@@ -25,13 +25,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: platform-clusterip-service
+  name: command-clusterip-service
 spec:
   type: ClusterIP
   selector:
-    app: platformservice
+    app: commandservice
   ports:
-  - name: platformservice
+  - name: commandservice
     protocol: TCP
     port: 80
     targetPort: 80
