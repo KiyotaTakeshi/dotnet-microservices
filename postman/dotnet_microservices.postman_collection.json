@@ -89,16 +89,88 @@
 					"name": "Platform Services",
 					"item": [
 						{
+							"name": "Node Port",
+							"item": [
+								{
+									"name": "Get All Platforms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:31834/api/platforms",
+											"host": [
+												"localhost"
+											],
+											"port": "31834",
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Terraform\",\n    \"publisher\": \"Hashicorp\",\n    \"cost\": \"Free\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:31834/api/platforms",
+											"host": [
+												"localhost"
+											],
+											"port": "31834",
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Platform by Id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:32424/api/platforms/1",
+											"host": [
+												"localhost"
+											],
+											"port": "32424",
+											"path": [
+												"api",
+												"platforms",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "Get All Platforms",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:32424/api/platforms",
+									"raw": "http://{{HOST_NAME}}/api/platforms",
+									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{HOST_NAME}}"
 									],
-									"port": "32424",
 									"path": [
 										"api",
 										"platforms"
@@ -122,34 +194,14 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:32424/api/platforms",
+									"raw": "http://{{HOST_NAME}}/api/platforms",
+									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{HOST_NAME}}"
 									],
-									"port": "32424",
 									"path": [
 										"api",
 										"platforms"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Platform by Id",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:32424/api/platforms/1",
-									"host": [
-										"localhost"
-									],
-									"port": "32424",
-									"path": [
-										"api",
-										"platforms",
-										"1"
 									]
 								}
 							},
@@ -233,8 +285,60 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "CommandService",
+					"item": [
+						{
+							"name": "CommandService test inbound",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:6000/api/c/platforms/",
+									"host": [
+										"localhost"
+									],
+									"port": "6000",
+									"path": [
+										"api",
+										"c",
+										"platforms",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST_NAME",
+			"value": "kiyotakeshi.test"
 		}
 	]
 }
