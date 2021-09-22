@@ -23,3 +23,10 @@ NAME                                 TYPE           CLUSTER-IP     EXTERNAL-IP  
 ingress-nginx-controller             LoadBalancer   10.100.99.33   localhost     80:32557/TCP,443:32293/TCP   4m21s
 ingress-nginx-controller-admission   ClusterIP      10.106.4.99    <none>        443/TCP                      4m21s
 ```
+
+- create secret
+
+```shell
+$ kubectl create secret generic mssql --from-literal=SA_PASSWORD="1qazxsw2"
+secret/mssql created
+```

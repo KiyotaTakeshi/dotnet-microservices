@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mssql-claim
+spec:
+  resources:
+    requests:
+      storage: 300Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+
+# $ kubectl get storageclass
+# NAME                 PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+# hostpath (default)   docker.io/hostpath   Delete          Immediate           false                  32h
+
+# $ kubectl get pvc         
+# NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+# mssql-claim   Bound    pvc-fcf4ea1f-4b7d-4d88-947c-c81a65c0394d   300Mi      RWX            hostpath       52s
