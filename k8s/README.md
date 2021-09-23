@@ -31,3 +31,9 @@ ingress-nginx-controller-admission   ClusterIP      10.106.4.99    <none>       
 $ kubectl create secret generic mssql --from-literal=SA_PASSWORD="1qazxsw2@"
 secret/mssql created
 ```
+
+- delete nginx ingress controller
+
+```shell
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
+```
