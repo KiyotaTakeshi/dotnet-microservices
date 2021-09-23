@@ -86,91 +86,19 @@
 			"name": "k8s",
 			"item": [
 				{
-					"name": "Platform Services",
+					"name": "Node Port",
 					"item": [
-						{
-							"name": "Node Port",
-							"item": [
-								{
-									"name": "Get All Platforms",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:31834/api/platforms",
-											"host": [
-												"localhost"
-											],
-											"port": "31834",
-											"path": [
-												"api",
-												"platforms"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Create Platform",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"name\": \"Terraform\",\n    \"publisher\": \"Hashicorp\",\n    \"cost\": \"Free\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "localhost:31834/api/platforms",
-											"host": [
-												"localhost"
-											],
-											"port": "31834",
-											"path": [
-												"api",
-												"platforms"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get All Platform by Id",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:32424/api/platforms/1",
-											"host": [
-												"localhost"
-											],
-											"port": "32424",
-											"path": [
-												"api",
-												"platforms",
-												"1"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
 						{
 							"name": "Get All Platforms",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{HOST_NAME}}/api/platforms",
-									"protocol": "http",
+									"raw": "localhost:31834/api/platforms",
 									"host": [
-										"{{HOST_NAME}}"
+										"localhost"
 									],
+									"port": "31834",
 									"path": [
 										"api",
 										"platforms"
@@ -194,11 +122,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://{{HOST_NAME}}/api/platforms",
-									"protocol": "http",
+									"raw": "localhost:31834/api/platforms",
 									"host": [
-										"{{HOST_NAME}}"
+										"localhost"
 									],
+									"port": "31834",
 									"path": [
 										"api",
 										"platforms"
@@ -206,6 +134,161 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get All Platform by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:32424/api/platforms/1",
+									"host": [
+										"localhost"
+									],
+									"port": "32424",
+									"path": [
+										"api",
+										"platforms",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "nginx",
+					"item": [
+						{
+							"name": "Platform Services",
+							"item": [
+								{
+									"name": "Get All Platforms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{HOST_NAME}}/api/platforms",
+											"protocol": "http",
+											"host": [
+												"{{HOST_NAME}}"
+											],
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Terraform\",\n    \"publisher\": \"Hashicorp\",\n    \"cost\": \"Free\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{HOST_NAME}}/api/platforms",
+											"protocol": "http",
+											"host": [
+												"{{HOST_NAME}}"
+											],
+											"path": [
+												"api",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Command Services",
+							"item": [
+								{
+									"name": "Get All Platforms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{HOST_NAME}}/api/c/platforms",
+											"protocol": "http",
+											"host": [
+												"{{HOST_NAME}}"
+											],
+											"path": [
+												"api",
+												"c",
+												"platforms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Command for Platform",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"HowTo\": \"write .tf file and apply this\",\n    \"CommandLine\": \"terraform apply\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{HOST_NAME}}/api/c/platforms/5/commands",
+											"protocol": "http",
+											"host": [
+												"{{HOST_NAME}}"
+											],
+											"path": [
+												"api",
+												"c",
+												"platforms",
+												"5",
+												"commands"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Commands for Platform",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://{{HOST_NAME}}/api/c/platforms/5/commands",
+											"protocol": "http",
+											"host": [
+												"{{HOST_NAME}}"
+											],
+											"path": [
+												"api",
+												"c",
+												"platforms",
+												"5",
+												"commands"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}

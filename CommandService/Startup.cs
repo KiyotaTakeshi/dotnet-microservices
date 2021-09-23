@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CommandService.AsyncDataServices;
 using CommandService.Data;
+using CommandService.EventProcessing;
+using CommandService.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,7 +36,26 @@ namespace CommandService
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMem"));
             services.AddScoped<ICommandRepo, CommandRepo>();
             services.AddControllers();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddHostedService<MessageBusSubscriber>();
+
+            // services.AddScoped<IEventProcessor, EventProcessor>();
+            services.AddSingleton<IEventProcessor, EventProcessor>();
+            // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // register AutoMapper as Singleton
+            // https://stackoverflow.com/a/40275196
+            // var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new CommandProfiles()));
+            // IMapper mapper = mappingConfig.CreateMapper();
+            // services.AddSingleton(mapper);
+
+            // register AutoMapper as Singleton 2
+            // https://ryuichi111std.hatenablog.com/entry/2016/11/18/005238
+            // AutoMapperをプロファイルを元に初期化してサービスに登録
+            services.AddAutoMapper(cfg => cfg.AddProfile<CommandProfiles>());
+            // IMapper型に対してMapperオブジェクトをsingletonでDIする様に定義を追加
+            services.AddSingleton<IMapper, Mapper>();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CommandService", Version = "v1" });
