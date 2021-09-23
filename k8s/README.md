@@ -27,6 +27,7 @@ ingress-nginx-controller-admission   ClusterIP      10.106.4.99    <none>       
 - create secret
 
 ```shell
-$ kubectl create secret generic mssql --from-literal=SA_PASSWORD="1qazxsw2"
+# ERROR: Unable to set system administrator password: Password validation failed. The password does not meet SQL Server password policy requirements because it is not complex enough. The password must be at least 8 characters long and contain characters from three of the following four sets: Uppercase letters, Lowercase letters, Base 10 digits, and Symbols..
+$ kubectl create secret generic mssql --from-literal=SA_PASSWORD="1qazxsw2@"
 secret/mssql created
 ```
